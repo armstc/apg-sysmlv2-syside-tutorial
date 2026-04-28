@@ -1,0 +1,20 @@
+    package LogicalStructure {
+
+        part def GarageDoorOpener {
+        }
+
+        part def GarageDoor {
+        }
+
+        part def DoorControl {
+        }
+
+        part def Actuator {
+        }
+
+        part def ObstructionSensor {
+        }
+        
+        part def GarageDoorOpenerSystem {
+        }
+    }

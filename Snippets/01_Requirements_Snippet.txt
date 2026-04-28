@@ -1,0 +1,17 @@
+    package Requirements {
+        requirement Functionality {
+            requirement openGarageDoor;
+            requirement closeGarageDoor;
+            requirement illuminateGarage;
+        }
+        requirement Integration {
+            requirement supportRemoteControlOpeners;
+        }
+        requirement Safety {
+            requirement manualOpening;
+            requirement preventCrushing;
+            requirement preventEntrapment;
+        }
+        requirement Performance {
+        }
+    }

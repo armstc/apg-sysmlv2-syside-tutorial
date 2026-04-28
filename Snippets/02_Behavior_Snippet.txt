@@ -1,0 +1,15 @@
+        action def OpenGarageDoor {
+
+            first start;
+                then requestOpen;
+
+            action requestOpen;
+
+            action raiseDoor;
+                
+            action monitorObstructions;
+
+            action indicateFullyOpened;
+
+            action indicatePartiallyOpened;
+        }
