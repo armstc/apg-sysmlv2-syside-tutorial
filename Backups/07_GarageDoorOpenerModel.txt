@@ -1,0 +1,27 @@
+package GarageDoorOpenerModel {
+
+    private import USCustomaryUnits::*;
+
+    package Requirements {
+        requirement Functionality {
+            requirement <'REQ-01'> openGarageDoor {
+                doc /* The system shall raise the garage door when the user presses the door control button. */
+            }
+            requirement <'REQ-02'> closeGarageDoor;
+            requirement <'REQ-03'> illuminateGarage;
+        }
+        requirement Integration {
+            requirement supportRemoteControlOpeners;
+        }
+        requirement Safety {
+            requirement manualOpening;
+            requirement preventCrushing;
+            requirement preventEntrapment;
+        }
+        requirement Performance {
+            doc /* The system shall be able to raise and lower a garage door that weighs up to 350 pounds. */
+            attribute maxDoorWeight :> ISQ::mass;
+            require constraint {maxDoorWeight <= 350 [lb]}
+        }
+    } // package Requirements
+} // package GarageDoorOpenerModel

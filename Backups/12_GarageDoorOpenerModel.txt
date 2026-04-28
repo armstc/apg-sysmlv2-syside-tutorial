@@ -1,0 +1,66 @@
+package GarageDoorOpenerModel {
+    private import ScalarValues::*;
+    private import USCustomaryUnits::*;
+
+    package Requirements {
+        requirement Functionality {
+            requirement <'REQ-01'> openGarageDoor {
+                doc
+                /* The system shall raise the garage door when the user presses the door control button. */
+            }
+            requirement <'REQ-02'> closeGarageDoor;
+            requirement <'REQ-03'> illuminateGarage;
+        }
+        requirement Integration {
+            requirement supportRemoteControlOpeners;
+        }
+        requirement Safety {
+            requirement manualOpening;
+            requirement preventCrushing;
+            requirement preventEntrapment;
+        }
+        requirement Performance {
+            doc
+            /* The system shall be able to raise and lower a garage door that weighs up to 350 pounds. */
+            attribute maxDoorWeight :> ISQ::mass;
+            require constraint { maxDoorWeight <= 350 [lb] }
+    } // package Requirements
+
+    package Behavior {
+        attribute doorFullyOpened : Boolean = false;
+
+        action def OpenGarageDoor {
+            first start;
+            then requestOpen;
+
+            action requestOpen;
+            then f1;
+
+            fork f1;
+                then raiseDoor;
+                then monitorObstructions;
+
+            action raiseDoor;
+            then j1;
+
+            action monitorObstructions;
+            then j1;
+
+            join j1;
+            then d1;
+
+            decide d1;
+                if doorFullyOpened then indicateFullyOpened;
+                if not doorFullyOpened then indicatePartiallyOpened;
+
+            merge m1;
+            then done;
+
+            action indicateFullyOpened;
+            then m1;
+
+            action indicatePartiallyOpened;
+            then m1;
+        }
+    } // package Behavior
+} // package GarageDoorOpenerModel
